@@ -192,14 +192,18 @@ public class MenuOpciones extends MainScreen implements ListFieldCallback {
     
     public class Sicronizacion extends TimerTask
     {         
-    	public Sicronizacion() { }  
+    	public Sicronizacion() { 
+    		
+    	}  
   
         public void run() 
         { 
         	try{
         		synchronized (UiApplication.getEventLock()) 
                 {  
-                    Sincronia sincUsuario = new Sincronia();
+        			Sincronia sincUsuario = new Sincronia();
+        			Finalizador finejecucion =  new Finalizador(sincUsuario,120000); 
+        			finejecucion.start();
         			sincUsuario.Exec();
         			sincUsuario = null;
                 }
@@ -208,5 +212,18 @@ public class MenuOpciones extends MainScreen implements ListFieldCallback {
         	}
         }
    }
+    
+    protected class Finalizador extends Thread{
+    	Finalizador(Thread tarea,int tiempomaximo){
+    		try {
+				sleep(tiempomaximo);
+				tarea.interrupt();
+			} catch (InterruptedException e) {
+				
+			}
+    		
+    	}
+    	
+    }
     
 }

@@ -219,7 +219,7 @@ public class ConsultoraDB {
         try {
             //httpConn.setRequestProperty("Accept-Encoding", "gzip");
         	setUrl1();
-            httpConn = (HttpConnection) Connector.open(URL + Cadenas.BIS);
+            httpConn = (HttpConnection) Connector.open(URL + Cadenas.getBIS());
             httpConn.setRequestMethod(HttpConnection.POST);
             httpConn.setRequestProperty("Host", Cadenas.URIServer);
             httpConn.setRequestProperty("Connection", "close");
@@ -340,7 +340,7 @@ public class ConsultoraDB {
         Vector objResultado = null;
         try {
         	setUrl2(seccion, nombre, docIdent, codigoConsultora);
-            httpConn = (HttpConnection) Connector.open(URL + Cadenas.BIS);
+            httpConn = (HttpConnection) Connector.open(URL + Cadenas.getBIS());
             httpConn.setRequestMethod(HttpConnection.POST);
             httpConn.setRequestProperty("Host", Cadenas.URIServer);
             httpConn.setRequestProperty("Connection", "close");
@@ -385,7 +385,7 @@ public class ConsultoraDB {
         Vector objResultado = null;
         try {
         	setUrl3(campana, seccion, idNivel, idEstado, deuda, estadoPedido);
-            httpConn = (HttpConnection) Connector.open(URL + Cadenas.BIS);
+            httpConn = (HttpConnection) Connector.open(URL + Cadenas.getBIS());
             httpConn.setRequestMethod(HttpConnection.POST);
             httpConn.setRequestProperty("Host", Cadenas.URIServer);
             httpConn.setRequestProperty("Connection", "close");
@@ -496,7 +496,7 @@ public class ConsultoraDB {
         Consultora consultora = null;
         try {
         	setUrl4(codId);
-            httpConn = (HttpConnection) Connector.open(URL + Cadenas.BIS);
+            httpConn = (HttpConnection) Connector.open(URL + Cadenas.getBIS());
             httpConn.setRequestMethod(HttpConnection.POST);
             httpConn.setRequestProperty("Host", Cadenas.URIServer);
             httpConn.setRequestProperty("Connection", "close");
@@ -883,7 +883,7 @@ public class ConsultoraDB {
         OutputStream os = null;
         try {
         	setURLA(accion, consultora);
-            httpConn = (HttpConnection) Connector.open(URL + Cadenas.BIS);
+            httpConn = (HttpConnection) Connector.open(URL + Cadenas.getBIS());
             httpConn.setRequestMethod(HttpConnection.POST);
             httpConn.setRequestProperty("Host", Cadenas.URIServer);
             httpConn.setRequestProperty("Connection", "close");

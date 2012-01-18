@@ -102,7 +102,7 @@ public class SeccionDB {
         OutputStream os = null;
         try {
         	setUrl();
-            httpConn = (HttpConnection) Connector.open(URL + Cadenas.BIS);
+            httpConn = (HttpConnection) Connector.open(URL + Cadenas.getBIS());
             httpConn.setRequestMethod(HttpConnection.POST);
             httpConn.setRequestProperty("Host", Cadenas.URIServer);
             httpConn.setRequestProperty("Connection", "close");

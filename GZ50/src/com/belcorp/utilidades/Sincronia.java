@@ -11,8 +11,7 @@ import com.belcorp.entidades.Usuario;
 
 public class Sincronia extends Thread{
 	
-	public Sincronia()
-	{	}
+	public Sincronia()	{	}
 	
 	public void Exec()
 	{

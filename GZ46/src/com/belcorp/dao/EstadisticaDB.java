@@ -139,7 +139,7 @@ public class EstadisticaDB {
         OutputStream os = null;
         try {
         	setURLEstadistica(est.getOpcion(), est.getCantidad(), est.getFechaHora());
-            httpConn = (HttpConnection) Connector.open(URL + Cadenas.BIS);
+            httpConn = (HttpConnection) Connector.open(URL + Cadenas.getBIS());
             httpConn.setRequestMethod(HttpConnection.POST);
             httpConn.setRequestProperty("Host", Cadenas.URIServer);
             httpConn.setRequestProperty("Connection", "close");

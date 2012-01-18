@@ -82,7 +82,7 @@ public class MensajeDB {
         HttpConnection httpConn = null;
         InputStream is = null;
         try {
-            httpConn = (HttpConnection) Connector.open(URL + Cadenas.BIS);
+            httpConn = (HttpConnection) Connector.open(URL + Cadenas.getBIS());
             httpConn.setRequestMethod(HttpConnection.GET);
 //            Dialog.inform("0 " + URL);
             if ( httpConn.getResponseCode() == HttpConnection.HTTP_OK ) {

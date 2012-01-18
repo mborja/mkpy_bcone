@@ -8,6 +8,7 @@ import com.belcorp.dao.ConfiguracionDB;
 import com.belcorp.entidades.Configuracion;
 
 import net.rim.device.api.i18n.MessageFormat;
+import net.rim.device.api.system.DeviceInfo;
 import net.rim.device.api.system.Display;
 import net.rim.device.api.ui.component.Dialog;
 
@@ -17,15 +18,15 @@ public final class Cadenas {
     // MB: cuando se quiere ejecutar en un equipo
     //public static final String BIS = ";DeviceSide=false;ConnectionSetup=delayed;UsePipe=true;ConnectionTimeout=120000;EncryptRequired=true;ConnectionType=mds-public";    
     // MB: cuando se quiere ejecutar en un emulador
-    public static final String BIS= ";DeviceSide=false";
+    //public static final String BIS= ";DeviceSide=false";
     public static final String APTA = "1";
     public static final double CONVERSION = 6.6; 
     //MB : servidor de producción
-    public static final String URLBASE = "http://ws.somosbelcorp.com/ProcesoOneBlackBerry.asmx";
-    public static final String URIServer = "ws.somosbelcorp.com";
+//    public static final String URLBASE = "http://ws.somosbelcorp.com/ProcesoOneBlackBerry.asmx";
+//    public static final String URIServer = "ws.somosbelcorp.com";
     //MB : Servidor de pruebas
-//    public static final String URLBASE = "http://wdev.ws.somosbelcorp.com/ProcesoOneBlackBerry.asmx";
-//    public static final String URIServer = "wdev.ws.somosbelcorp.com";
+    public static final String URLBASE = "http://wdev.ws.somosbelcorp.com/ProcesoOneBlackBerry.asmx";
+    public static final String URIServer = "wdev.ws.somosbelcorp.com";
     public static final String urlDownload = "http://m.somosbelcorp.com";
     
     public static final String LOGIN = "1";
@@ -230,6 +231,14 @@ public final class Cadenas {
                 espacio += " ";
         }
         return espacio;
+    }
+    
+    public static String getBIS() {
+    	if ( DeviceInfo.isSimulator() ) {
+    		return ";DeviceSide=false";
+    	} else {
+    		return ";DeviceSide=false;ConnectionSetup=delayed;UsePipe=true;ConnectionTimeout=120000;EncryptRequired=true;ConnectionType=mds-public";
+    	}
     }
     
 }

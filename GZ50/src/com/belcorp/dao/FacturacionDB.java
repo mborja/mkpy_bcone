@@ -128,7 +128,7 @@ public class FacturacionDB {
         OutputStream os = null;
         try {
         	setUrl();
-            httpConn = (HttpConnection) Connector.open(URL + Cadenas.BIS);
+            httpConn = (HttpConnection) Connector.open(URL + Cadenas.getBIS());
             httpConn.setRequestMethod(HttpConnection.POST);
             httpConn.setRequestProperty("Host", Cadenas.URIServer);
             httpConn.setRequestProperty("Connection", "close");
@@ -345,7 +345,7 @@ public class FacturacionDB {
 	        Facturacion facturacion = null ;
 	        try {
 	        	
-	            httpConn = (HttpConnection) Connector.open(URL + Cadenas.BIS);
+	            httpConn = (HttpConnection) Connector.open(URL + Cadenas.getBIS());
 	            httpConn.setRequestMethod(HttpConnection.GET);
 	            if ( httpConn.getResponseCode() == HttpConnection.HTTP_OK ) {
 	                is = httpConn.openInputStream();
