@@ -73,7 +73,7 @@ public class Autenticar extends MainScreen implements FieldChangeListener {
 			setPositionChild(field, 5, 0);
 			
 			field = getField(1);
-			layoutChild(field, width, height);
+			layoutChild(field, (int)(width*.8), height);
 			setPositionChild(field, (width / 2) + (width / 4) - ( field.getPreferredWidth() / 2), 0);
 
        	}

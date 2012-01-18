@@ -168,10 +168,12 @@ public class DatosConsultora extends MainScreen implements FieldChangeListener {
             }
             add(new SeparatorField());
 
-            add( new mkpyLabelField("1) Seguimiento de meta:", EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
+            add( new mkpyLabelField("1) Seguimiento de meta :", EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
             chTipoMeta = new mkpyObjectChoiceField("Tipo meta: ", mostrarMetas(), 0,  ObjectChoiceField.USE_ALL_WIDTH, Estilos.getBGInterlinea(1));
             add(chTipoMeta);
+            
             add( new mkpyLabelField("Descripción de la meta",EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
+            
             editMeta = new mkpyLabelEditField("", consultora.getDescripcionMeta(), 60, EditField.EDITABLE, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1));
             editMontoMeta = new mkpyLabelEditField("Monto meta: ".concat(Cadenas.getMoneda()), String.valueOf( consultora.getMontoMeta() ), 25, EditField.FILTER_NUMERIC | EditField.FIELD_LEFT, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1));
             add(editMeta);
@@ -220,14 +222,14 @@ public class DatosConsultora extends MainScreen implements FieldChangeListener {
             }
             add(new SeparatorField());
             
-            add( new mkpyLabelField("1) Seguimiento de meta:", EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
+            add( new mkpyLabelField("1) Seguimiento de meta :", EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
         	add( new mkpyLabelField("Tiene ".concat(Cadenas.getMoneda()).concat(formato.formatNumber(consultora.getGananciaUltimaCampana(),2)).concat(" acumulado de ganancia."), EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
             if ( consultora.getMontoMeta() > 0 ) { // TIENE META
 	            //TODO: monto acumulado de ganancia
                 add( new mkpyLabelField("Le falta ".concat(Cadenas.getMoneda()).concat(formato.formatNumber((consultora.getMontoMeta() - consultora.getGananciaUltimaCampana()),2)).concat(" para llegar a su meta."),EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)));
-            } else {
+            //} else {
 	            chTipoMeta = new mkpyObjectChoiceField("Tipo meta: ", mostrarMetas(), 0, ObjectChoiceField.USE_ALL_WIDTH, Estilos.getBGInterlinea(1));
-	            add( new mkpyLabelField("Descripción de la meta", EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
+	            add( new mkpyLabelField("Descripción de la meta ", EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
 	            editMeta = new mkpyLabelEditField("", consultora.getDescripcionMeta(), 60, EditField.EDITABLE, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1));
 	            editMontoMeta = new mkpyLabelEditField("Monto meta: ".concat(Cadenas.getMoneda()), String.valueOf( consultora.getMontoMeta() ), 25, EditField.FILTER_NUMERIC | EditField.FIELD_LEFT, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1));
 	            lblRangoMeta = new mkpyLabelLabelField("", "", LabelField.NON_FOCUSABLE, Color.GRAY, Estilos.getBGInterlinea(5)); 

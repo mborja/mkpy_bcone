@@ -15,9 +15,9 @@ import net.rim.device.api.ui.component.Dialog;
 public final class Cadenas {
     public static final String TOKEN = "|";
     // MB: cuando se quiere ejecutar en un equipo
-    public static final String BIS = ";DeviceSide=false;ConnectionSetup=delayed;UsePipe=true;ConnectionTimeout=120000;EncryptRequired=true;ConnectionType=mds-public";    
+    //public static final String BIS = ";DeviceSide=false;ConnectionSetup=delayed;UsePipe=true;ConnectionTimeout=120000;EncryptRequired=true;ConnectionType=mds-public";    
     // MB: cuando se quiere ejecutar en un emulador
-    //public static final String BIS= ";DeviceSide=false";
+    public static final String BIS= ";DeviceSide=false";
     public static final String APTA = "1";
     public static final double CONVERSION = 6.6; 
     //MB : servidor de producción

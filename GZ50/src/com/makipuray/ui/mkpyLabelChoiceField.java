@@ -14,8 +14,7 @@ public class mkpyLabelChoiceField extends HorizontalFieldManager {
 		super(HorizontalFieldManager.NO_HORIZONTAL_SCROLL 
                 | HorizontalFieldManager.NO_VERTICAL_SCROLL | HorizontalFieldManager.USE_ALL_WIDTH);
 		mkpyLabel = new mkpyLabelField(label, style | BitmapField.FIELD_VCENTER, color, backcolor);
-//activar 5.0		opciones = new ObjectChoiceField("", value, 0, ObjectChoiceField.FIELD_VCENTER | ObjectChoiceField.USE_ALL_WIDTH | ObjectChoiceField.FORCE_SINGLE_LINE);
-		opciones = new ObjectChoiceField("", value, 0, ObjectChoiceField.FIELD_VCENTER | ObjectChoiceField.USE_ALL_WIDTH );
+        opciones = new ObjectChoiceField("", value, 0, ObjectChoiceField.FIELD_VCENTER | ObjectChoiceField.USE_ALL_WIDTH | ObjectChoiceField.FORCE_SINGLE_LINE);
 		super.setBackground(BackgroundFactory.createSolidBackground(backcolor));
         mkpyLabel.setFont(this.getFont().derive(Font.BOLD));
         opciones.setFont(this.getFont().derive(this.getFont().getStyle(), 13));
