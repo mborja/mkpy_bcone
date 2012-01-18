@@ -1,0 +1,31 @@
+<loader version="1.0">
+	<application id="GZ50">
+		<name >
+			Gerente de Zona
+		</name>
+		<description >
+			
+		</description>
+		<version >
+			1.0.3
+		</version>
+		<vendor >
+			Makipuray
+		</vendor>
+		<copyright >
+			Copyright (c) 2012 Makipuray
+		</copyright>
+		<fileset Java="1.54" _blackberryVersion="[5.0.0)">
+			<directory >
+				5.0.0
+			</directory>
+			<files >
+				GZ50.cod
+
+			</files>
+
+		</fileset>
+
+	</application>
+
+</loader>

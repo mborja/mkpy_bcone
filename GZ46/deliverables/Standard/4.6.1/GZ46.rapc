@@ -1,0 +1,10 @@
+MIDlet-Name: GZ46
+MIDlet-Version: 1.0.3
+MIDlet-Vendor: Makipuray
+MIDlet-Jar-URL: GZ46.jar
+MIDlet-Jar-Size: 0
+MicroEdition-Profile: MIDP-2.0
+MicroEdition-Configuration: CLDC-1.1
+MIDlet-1: Gerente de Zona,Icono.png,
+RIM-MIDlet-Flags-1: 0
+

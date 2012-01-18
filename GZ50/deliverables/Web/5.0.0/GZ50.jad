@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+MIDlet-Version: 1.0.3
+MIDlet-Jar-Size: 486079
+RIM-COD-URL-3: GZ50-3.cod
+RIM-COD-SHA1-3: 6e a8 68 1f b8 00 2c 62 d4 52 46 91 56 24 1f b2 33 05 9b 2f
+RIM-COD-URL-2: GZ50-2.cod
+MicroEdition-Configuration: CLDC-1.1
+MIDlet-Jar-URL: GZ50.jar
+RIM-COD-Module-Dependencies: net_rim_cldc,net_rim_xml_org,net_rim_xml,net_rim_bbapi_invoke,net_rim_bbapi_browser
+RIM-COD-SHA1-2: fe f3 bf 61 34 1a 4e 04 5f a0 4c 1b f6 7d a4 22 c8 02 2d f5
+RIM-COD-URL-1: GZ50-1.cod
+RIM-COD-SHA1-1: 1c a8 a6 4a 25 2b 29 cf 84 a4 0b 48 5e 81 36 86 67 a0 7f e6
+RIM-COD-Size-3: 41720
+RIM-COD-Size-2: 57224
+RIM-MIDlet-Flags-1: 0
+RIM-COD-Size-1: 61084
+RIM-COD-Module-Name: GZ50
+MIDlet-Name: GZ50
+RIM-COD-Size: 62956
+RIM-COD-Creation-Time: 1326758797
+MIDlet-1: Gerente de Zona,Icono.png,
+RIM-COD-URL: GZ50.cod
+RIM-COD-SHA1: 10 d6 94 35 95 26 dd c1 ca 86 1a fa e5 95 ea f8 3f fd 19 e2
+MicroEdition-Profile: MIDP-2.0
+MIDlet-Vendor: Makipuray
