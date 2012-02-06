@@ -5,6 +5,7 @@ import javax.microedition.global.Formatter;
 import net.rim.blackberry.api.invoke.Invoke;
 import net.rim.blackberry.api.invoke.MessageArguments;
 import net.rim.blackberry.api.invoke.PhoneArguments;
+import net.rim.device.api.i18n.Locale;
 import net.rim.device.api.system.Bitmap;
 import net.rim.device.api.ui.Color;
 import net.rim.device.api.ui.Field;
@@ -74,34 +75,63 @@ public class DatosConsultora extends MainScreen implements FieldChangeListener {
    }
     
     private void datosConsultora(int screen) {
-    	Formatter formato = new Formatter();
+    	//Dialog.inform("Pantalla ".concat(String.valueOf(screen)));
+    	//Dialog.inform("Inicio prueba formatter");
+	    Formatter formato;
+	    //Dialog.inform("fin prueba formatter");
+
     	pantalla = screen;
+    	//Dialog.inform("Pantalla ".concat(String.valueOf(pantalla)));
+    	//Dialog.inform("2");
         //INICIO: datos consultora
         add( new BitmapField(Bitmap.getBitmapResource(Cadenas.getClasificacionMetodologica(consultora.getClasificacionMetodologica())), BitmapField.FIELD_HCENTER));
+        //Dialog.inform("3");
         add( new mkpyLabelField(consultora.getNombre(), LabelField.USE_ALL_WIDTH | LabelField.FOCUSABLE | LabelField.ELLIPSIS, Color.BLACK, Color.WHITE, true) );
+        //Dialog.inform("4");
         add( new mkpyImageLabelField(Bitmap.getBitmapResource("img/consultora/direccion.png"), consultora.getDireccion(), LabelField.NON_FOCUSABLE | LabelField.ELLIPSIS, Color.BLACK, Color.WHITE, true) );
+        //Dialog.inform("5");
         add( new mkpyLabelLabelField("Cod.Consultora: ", consultora.getCodigo(), EditField.NON_FOCUSABLE, Color.BLACK, Color.WHITE) );
+        //Dialog.inform("6");
         add( new mkpyLabelLabelField("Doc.Identidad: ", consultora.getDocIdentidad(), EditField.NON_FOCUSABLE, Color.BLACK, Color.WHITE) );
+        //Dialog.inform("7");
         editTelef1 = new mkpyImageEditField(Bitmap.getBitmapResource("img/consultora/telefono1.png"), consultora.getTelefono1(), 30, EditField.FILTER_PHONE | EditField.NO_NEWLINE, Color.BLACK, Color.WHITE); //
+        //Dialog.inform("8");
         add(editTelef1);
+        //Dialog.inform("9");
         editTelef2 = new mkpyImageEditField(Bitmap.getBitmapResource("img/consultora/telefono2.png"), consultora.getTelefono2(), 30, EditField.FILTER_PHONE | EditField.NO_NEWLINE, Color.BLACK, Color.WHITE);
+        //Dialog.inform("10");
         add(editTelef2);
+        //Dialog.inform("11");
         editTelef3 = new mkpyImageEditField(Bitmap.getBitmapResource("img/consultora/telefono3.png"), consultora.getTelefono3(), 30, EditField.FILTER_PHONE | EditField.NO_NEWLINE, Color.BLACK, Color.WHITE);
+        //Dialog.inform("12");
         add(editTelef3);
+        //Dialog.inform("13");
         editEmail = new mkpyImageEditField(Bitmap.getBitmapResource("img/consultora/correo.png"), consultora.getEmail(), 100, EditField.NO_NEWLINE | EditField.FILTER_EMAIL, Color.BLACK, Color.WHITE);
+        //Dialog.inform("14");
         add(editEmail);
+        //Dialog.inform("15");
         add( new mkpyLabelLabelField("Campaña de Ingreso: ", consultora.getCampanaIngreso(), EditField.NON_FOCUSABLE, Color.BLACK, Color.WHITE) );
+        //Dialog.inform("16");
         add( new mkpyLabelLabelField("¿Puede pasar pedido?: ", consultora.getAutorizadoPasarPedido(), EditField.NON_FOCUSABLE, Color.BLACK, Color.WHITE) ); //se cambio .getPasoPedido() ... parece que es un error ... depende del criterio del usuario
+        //Dialog.inform("17");
         add( new mkpyLabelLabelField("Sección: ", consultora.getIdSeccion(), EditField.NON_FOCUSABLE, Color.BLACK, Color.WHITE) );
+        //Dialog.inform("18");
         add( new mkpyLabelLabelField("¿Asistió a la conf. Triunfadoras?: ", consultora.getAsisteCompartamos(), EditField.NON_FOCUSABLE, Color.BLACK, Color.WHITE) );
+        //Dialog.inform("19");
         add( new mkpyLabelLabelField("Saldo: ", Cadenas.getMoneda() + consultora.getSaldo(), EditField.NON_FOCUSABLE, Color.BLACK, Color.WHITE) );        
-
+        //Dialog.inform("20");
+        
         hypVenta = new HyperlinkField(verVenta);
+        //Dialog.inform("21");
         hypVentaxMarca = new HyperlinkField(verVentaxMarca);
+        //Dialog.inform("22");
         hypPuntaje = new HyperlinkField(verPuntaje);
+        //Dialog.inform("23");
         hypCDR = new HyperlinkField(verPosVenta);
+        //Dialog.inform("24");
         hypAnotaciones = new HyperlinkField(verAnotaciones);
         
+        //Dialog.inform("Fin Carga");
         //FIN: datos consultora
        
         if(pantalla == 1 ){
@@ -186,11 +216,17 @@ public class DatosConsultora extends MainScreen implements FieldChangeListener {
             	editMontoMeta.setEditable(false);
             }
             
-            //TODO: monto acumulado de ganancia
+            //TODO MBL monto acumulado de ganancia
             add( new mkpyLabelField("Tiene ".concat(Cadenas.getMoneda()).concat(String.valueOf(consultora.getGananciaUltimaCampana())).concat(" acumulado de ganancia."), EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
             if ( consultora.getMontoMeta() > 0 ) { // TIENE META
                 //TODO: monto acumulado de ganancia
-                add( new mkpyLabelField("Le falta ".concat(Cadenas.getMoneda()).concat(formato.formatNumber((consultora.getMontoMeta() - consultora.getGananciaUltimaCampana()),2)).concat(" para llegar a su meta."),EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
+        		try{
+            		formato = new Formatter();
+            		Dialog.inform(formato.getLocale());
+            		add( new mkpyLabelField("Le falta ".concat(Cadenas.getMoneda()).concat(formato.formatNumber((consultora.getMontoMeta() - consultora.getGananciaUltimaCampana()),2)).concat(" para llegar a su meta."),EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
+           		}catch( Exception ex ){
+        			Dialog.inform(ex.getMessage());
+        		}
             }
             add(hypVenta);
             add(hypVentaxMarca);
@@ -223,9 +259,16 @@ public class DatosConsultora extends MainScreen implements FieldChangeListener {
             add( new mkpyLabelField("1) Seguimiento de meta :", EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
         	add( new mkpyLabelField("Tiene ".concat(Cadenas.getMoneda()).concat(String.valueOf(consultora.getGananciaUltimaCampana())).concat(" acumulado de ganancia."), EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
             if ( consultora.getMontoMeta() > 0 ) { // TIENE META
-	            //TODO: monto acumulado de ganancia
-                add( new mkpyLabelField("Le falta ".concat(Cadenas.getMoneda()).concat(formato.formatNumber(consultora.getMontoMeta() - consultora.getGananciaUltimaCampana(),2)).concat(" para llegar a su meta."),EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)));
-//            } else {
+	            //TODO: MBL monto acumulado de ganancia
+                try{
+            		formato = new Formatter();
+            		Dialog.inform(formato.getLocale());
+            		add( new mkpyLabelField("Le falta ".concat(Cadenas.getMoneda()).concat(formato.formatNumber(consultora.getMontoMeta() - consultora.getGananciaUltimaCampana(),2)).concat(" para llegar a su meta."),EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)));
+            	}catch( Exception ex ){
+        			Dialog.inform(ex.getMessage());
+        		}
+            	
+                //            } else {
 	            chTipoMeta = new mkpyObjectChoiceField("Tipo meta: ", mostrarMetas(), 0, ObjectChoiceField.USE_ALL_WIDTH, Estilos.getBGInterlinea(1));
 	            add( new mkpyLabelField("Descripción de la meta", EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
 	            editMeta = new mkpyLabelEditField("", consultora.getDescripcionMeta(), 60, EditField.EDITABLE, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1));

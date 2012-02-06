@@ -239,7 +239,9 @@ public class ConsultaSeccion extends MainScreen implements ListFieldCallback {
         if ( codId.trim().equals("") ) {
         	codId = consultoraFiltro.getCodigo();
         }
-//TODO:verificar que funciona bien sin esta linea        Consultora consultora = consultoraBusquedaLocal(codId); 
+        
+        //TODO: MBL Parece que el problema es por acá
+        consultora = consultoraBusquedaLocal(codId); 
         if(consultora == null) {
     		progress.open();
     		progress.setTitle("Buscando...");
