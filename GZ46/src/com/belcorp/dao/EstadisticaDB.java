@@ -146,7 +146,7 @@ public class EstadisticaDB {
             httpConn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             httpConn.setRequestProperty("Content-Length", "" + DATA.length());
             os = httpConn.openOutputStream();
-            os.write(DATA.getBytes());
+            os.write(DATA.getBytes("UTF-8"));
             os.flush();
             int responseCode = httpConn.getResponseCode();
             if ( responseCode == HttpConnection.HTTP_OK ) {

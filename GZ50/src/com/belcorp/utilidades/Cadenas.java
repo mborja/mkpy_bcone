@@ -25,8 +25,8 @@ public final class Cadenas {
     public static final String URLBASE = "http://ws.somosbelcorp.com/ProcesoOneBlackBerry.asmx";
     public static final String URIServer = "ws.somosbelcorp.com";
     //MB : Servidor de pruebas
-//    public static final String URLBASE = "http://wdev.ws.somosbelcorp.com/ProcesoOneBlackBerry.asmx";
-//    public static final String URIServer = "wdev.ws.somosbelcorp.com";
+    //public static final String URLBASE = "http://wdev.ws.somosbelcorp.com/ProcesoOneBlackBerry.asmx";
+    //public static final String URIServer = "wdev.ws.somosbelcorp.com";
     public static final String urlDownload = "http://m.somosbelcorp.com";
     
     public static final String LOGIN = "1";

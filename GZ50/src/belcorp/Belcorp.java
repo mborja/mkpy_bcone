@@ -23,7 +23,7 @@ import com.makipuray.ui.mkpyStatusProgress;
 
 /**
  * @author Fencalada  
- */
+**/
 
 class Belcorp extends UiApplication{
     private static Belcorp myApp;
