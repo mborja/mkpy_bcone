@@ -241,4 +241,40 @@ public final class Cadenas {
     	}
     }
     
+    public static String getFormatDecimalNumberString(double numero,int decimales){
+    	String numeroEnTexto = String.valueOf(numero);
+    	String parteEntera="0";
+    	String parteDecimal="00";
+    	String resultado="";
+    	String[] textoSplit = splitSimple(numeroEnTexto,".");
+    	if(textoSplit.length==2){
+    		parteEntera=textoSplit[0];
+    		parteDecimal=textoSplit[1].concat("00");
+    	}else if(textoSplit.length==1){
+    		parteEntera=textoSplit[0];
+    		parteDecimal="00";    		
+    	}
+        //MBL:Si se desea darle formato de miles a la parte entera.
+        //parteEntera = formatMiles( Integer.parseInt(parteEntera));
+        parteDecimal = parteDecimal.substring(0,2);
+    	
+    	resultado = parteEntera.concat(getDecimal()).concat(parteDecimal);
+    	
+    	return resultado;
+    }
+    
+    public static String formatMiles(int entero){
+    	String parteEntera = String.valueOf(entero);
+        String enteroConMiles="";
+        int n = parteEntera.length();
+        for (int i = n; i > 0; i--) {
+            if ( (i % 3 == 0 ) && (i > 0) && (i < n) ) { // adicionar simbolo de miles
+            	enteroConMiles = parteEntera.charAt(i-1) + getMiles() + enteroConMiles;   
+            } else { //
+            	enteroConMiles = parteEntera.charAt(i-1) + enteroConMiles; 
+            }
+        }
+        return enteroConMiles;
+    }
+    
 }

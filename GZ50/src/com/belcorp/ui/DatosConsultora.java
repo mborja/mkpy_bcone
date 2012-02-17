@@ -2,6 +2,7 @@ package com.belcorp.ui;
 
 //import javax.microedition.global.Formatter;
 import net.rim.device.api.i18n.Format;
+import net.rim.device.api.i18n.MessageFormat;
 
 import net.rim.blackberry.api.invoke.Invoke;
 import net.rim.blackberry.api.invoke.MessageArguments;
@@ -76,8 +77,8 @@ public class DatosConsultora extends MainScreen implements FieldChangeListener {
    }
     
     private void datosConsultora(int screen) {
-	    Formatter formato;
     	pantalla = screen;
+    	
         add( new BitmapField(Bitmap.getBitmapResource(Cadenas.getClasificacionMetodologica(consultora.getClasificacionMetodologica())), BitmapField.FIELD_HCENTER));
         add( new mkpyLabelField(consultora.getNombre(), LabelField.USE_ALL_WIDTH | LabelField.FOCUSABLE | LabelField.ELLIPSIS, Color.BLACK, Color.WHITE, true) );
         add( new mkpyImageLabelField(Bitmap.getBitmapResource("img/consultora/direccion.png"), consultora.getDireccion(), LabelField.NON_FOCUSABLE | LabelField.ELLIPSIS, Color.BLACK, Color.WHITE, true) );
@@ -188,15 +189,10 @@ public class DatosConsultora extends MainScreen implements FieldChangeListener {
             //TODO MBL se le da formato al numero monto acumulado de ganancia
             add( new mkpyLabelField("Tiene ".concat(Cadenas.getMoneda()).concat(String.valueOf(consultora.getGananciaUltimaCampana())).concat(" acumulado de ganancia."), EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
             if ( consultora.getMontoMeta() > 0 ) { // TIENE META
-                //TODO: monto acumulado de ganancia
-        		try{
-            		formato = new Formatter();
-            		//Dialog.inform(formato.getLocale());
-            		add( new mkpyLabelField("Le falta ".concat(Cadenas.getMoneda()).concat(formato.formatNumber((consultora.getMontoMeta() - consultora.getGananciaUltimaCampana()),2)).concat(" para llegar a su meta."),EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
-           		}catch( Exception ex ){
-        			Dialog.inform(ex.getMessage());
-        		}
-            }
+                //TODO: Mostrar solo 2 decimales
+            	double numero = (consultora.getMontoMeta() - consultora.getGananciaUltimaCampana()) ; 
+        		add( new mkpyLabelField("Le falta ".concat(Cadenas.getMoneda()).concat(Cadenas.getFormatDecimalNumberString(numero,2)).concat(" para llegar a su meta."),EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
+              }
             add(hypVenta);
             add(hypVentaxMarca);
             hypVenta.setBackColor(Estilos.getBGInterlinea(1));
@@ -228,14 +224,15 @@ public class DatosConsultora extends MainScreen implements FieldChangeListener {
             add( new mkpyLabelField("1) Seguimiento de meta :", EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
         	add( new mkpyLabelField("Tiene ".concat(Cadenas.getMoneda()).concat(String.valueOf(consultora.getGananciaUltimaCampana())).concat(" acumulado de ganancia."), EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
             if ( consultora.getMontoMeta() > 0 ) { // TIENE META
-	            //TODO: MBL Se le da formato al numero monto acumulado de ganancia
-                try{
-            		formato = new Formatter();
+	            //TODO: MBL Mostrar solo 2 decimales
+            	double meta2=0.00;
+            	try{
+            		meta2 = consultora.getMontoMeta() - consultora.getGananciaUltimaCampana();
+            	}catch(Exception ex){
+            		Dialog.inform(ex.getMessage());
+            	}
             		//Dialog.inform(formato.getLocale());
-            		add( new mkpyLabelField("Le falta ".concat(Cadenas.getMoneda()).concat(formato.formatNumber(consultora.getMontoMeta() - consultora.getGananciaUltimaCampana(),2)).concat(" para llegar a su meta."),EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)));
-            	}catch( Exception ex ){
-        			Dialog.inform(ex.getMessage());
-        		}
+        		add( new mkpyLabelField("Le falta ".concat(Cadenas.getMoneda()).concat( Cadenas.getFormatDecimalNumberString(meta2,2)  ).concat(" para llegar a su meta."),EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)));
             	
                 //            } else {
 	            chTipoMeta = new mkpyObjectChoiceField("Tipo meta: ", mostrarMetas(), 0, ObjectChoiceField.USE_ALL_WIDTH, Estilos.getBGInterlinea(1));
@@ -291,11 +288,11 @@ public class DatosConsultora extends MainScreen implements FieldChangeListener {
                 chTipoMeta.setSelectedIndex ( getIndexIdMeta(consultora.getIdMeta()) );
                 add(lblRangoMeta);
                 //TODO:Formatear números
-           		formato = new Formatter();              
+           		double meta3 = ( consultora.getMontoMeta() - consultora.getGananciaUltimaCampana());             
                 if ( consultora.getGananciaUltimaCampana() >= consultora.getMontoMeta() ) { // CUMPLIO META
-                    add( new mkpyLabelField("Felicítala por lograr los 4 primeros pedidos consecutivos y por haber alcanzado el monto ".concat(Cadenas.getMoneda()).concat(formato.formatNumber(consultora.getGananciaUltimaCampana(),2)).concat(" de su meta. Pregúntale si adquirió la menta. Anímala a seguir superándose."), EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
+                    add( new mkpyLabelField("Felicítala por lograr los 4 primeros pedidos consecutivos y por haber alcanzado el monto ".concat(Cadenas.getMoneda()).concat(String.valueOf((consultora.getGananciaUltimaCampana()))).concat(" de su meta. Pregúntale si adquirió la menta. Anímala a seguir superándose."), EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
                 } else { // NO CUMPLIO META
-                    add( new mkpyLabelField("Felicítala por lograr los 4 primeros pedidos consecutivos y motávala para que siga adelante para lograr su meta, le faltó ".concat(Cadenas.getMoneda()).concat(formato.formatNumber(consultora.getMontoMeta() - consultora.getGananciaUltimaCampana(),2)).concat(" para llegar a su meta."), EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
+                    add( new mkpyLabelField("Felicítala por lograr los 4 primeros pedidos consecutivos y motávala para que siga adelante para lograr su meta, le faltó ".concat(Cadenas.getMoneda()).concat(Cadenas.getFormatDecimalNumberString(meta3,2)).concat(" para llegar a su meta."), EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
                 }
                 if ( consultora.getMontoMeta() > 0 ) {
                 	chTipoMeta.setEditable(false);
@@ -304,10 +301,9 @@ public class DatosConsultora extends MainScreen implements FieldChangeListener {
                 }
             } else {
                 //TODO: monto acumulado de ganancia
-                //TODO:Formatear números
-           		formato = new Formatter();              
+                //TODO:Formatear números              
                 add( new mkpyLabelField("Felicítala por lograr los 4 primeros pedidos consecutivos y motívala a seguir superándose y lograr sus metas.", EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
-                add( new mkpyLabelField("Tiene ".concat(Cadenas.getMoneda()).concat(formato.formatNumber(consultora.getGananciaUltimaCampana(),2)).concat(" acumulado de ganancia."), EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
+                add( new mkpyLabelField("Tiene ".concat(Cadenas.getMoneda()).concat(String.valueOf(consultora.getGananciaUltimaCampana())).concat(" acumulado de ganancia."), EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(1), Estilos.getBGInterlinea(1)) );
             }
             add( new mkpyLabelField("2) Seguimiento a pedidos de la próxima campaña.", EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(2), Estilos.getBGInterlinea(2)) );
             add( new mkpyLabelField("3) Explícale el plan de superación.", EditField.NON_FOCUSABLE | EditField.USE_ALL_WIDTH, Estilos.getColorInterlinea(3), Estilos.getBGInterlinea(3)) );
