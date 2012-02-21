@@ -77,6 +77,26 @@ public final class Estilos {
 
         UiApplication.getUiApplication().pushScreen(screen);	
 	}
+	
+	public static void pushScreenPop(MainScreen screen) {
+	 	
+        UiEngineInstance engine = Ui.getUiEngineInstance();
+
+        TransitionContext transitionContextPush = new TransitionContext(TransitionContext.TRANSITION_SLIDE);
+        transitionContextPush.setIntAttribute(TransitionContext.ATTR_DURATION, 200);
+        transitionContextPush.setIntAttribute(TransitionContext.ATTR_DIRECTION, TransitionContext.DIRECTION_LEFT);
+
+        TransitionContext transitionContextPop = new TransitionContext(TransitionContext.TRANSITION_SLIDE);
+        transitionContextPop.setIntAttribute(TransitionContext.ATTR_DURATION, 200);
+        transitionContextPop.setIntAttribute(TransitionContext.ATTR_DIRECTION, TransitionContext.DIRECTION_RIGHT);
+        transitionContextPop.setIntAttribute(TransitionContext.ATTR_KIND, TransitionContext.KIND_OUT);
+
+        engine.setTransition(null, screen, UiEngineInstance.TRIGGER_PUSH, transitionContextPush);
+        engine.setTransition(screen, null, UiEngineInstance.TRIGGER_POP, transitionContextPop);
+
+        UiApplication.getUiApplication().pushScreen(screen);
+        UiApplication.getUiApplication().popScreen(screen);
+	}
 } 
 
 

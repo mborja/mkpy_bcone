@@ -13,6 +13,7 @@ import net.rim.device.api.ui.Color;
 import net.rim.device.api.ui.Field;
 import net.rim.device.api.ui.FieldChangeListener;
 import net.rim.device.api.ui.MenuItem;
+import net.rim.device.api.ui.UiApplication;
 import net.rim.device.api.ui.component.BitmapField;
 import net.rim.device.api.ui.component.ChoiceField;
 import net.rim.device.api.ui.component.Dialog;
@@ -826,4 +827,9 @@ public class DatosConsultora extends MainScreen implements FieldChangeListener {
         }
         menu.add(misAnotaciones);
 	}
+    
+  public boolean onClose(){    
+    	UiApplication.getUiApplication().popScreen(this);
+    	return true;
+    }
 }
