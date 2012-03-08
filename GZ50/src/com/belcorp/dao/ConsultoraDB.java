@@ -166,10 +166,13 @@ public class ConsultoraDB {
         //mkpyStatusProgress progress = new mkpyStatusProgress("Consultoras...", 0, n, GaugeField.PERCENT);   
         objetos = new Vector();
         //progress.open();
+        Node contactNode;
+        String registro;
+        String[] fields;
         for (int i = 1; i < n; i = i + 2) {
-            Node contactNode = node.item(i);
-            String registro = contactNode.getChildNodes().item(0).getNodeValue();
-            String[] fields = Cadenas.splitSimple(registro, Cadenas.TOKEN);
+            contactNode = node.item(i);
+            registro = contactNode.getChildNodes().item(0).getNodeValue();
+            fields = Cadenas.splitSimple(registro, Cadenas.TOKEN);
             objetos.addElement( agregarConsultora(fields));
             //progress.setProgress(i);
         }
@@ -434,11 +437,15 @@ public class ConsultoraDB {
         int index;
         int n = node.getLength();
         Vector objResultado = new Vector();
+        Node contactNode;
+        String registro;
+        String[] fields;
+        Consultora consultora;
         for (int i = 1; i < n; i = i + 2) {
-            Node contactNode = node.item(i);
-            String registro = contactNode.getChildNodes().item(0).getNodeValue();
-            String[] fields = Cadenas.splitSimple(registro, Cadenas.TOKEN);
-            Consultora consultora = new Consultora();
+            contactNode = node.item(i);
+            registro = contactNode.getChildNodes().item(0).getNodeValue();
+            fields = Cadenas.splitSimple(registro, Cadenas.TOKEN);
+            consultora = new Consultora();
             index = 0;
          
             consultora.setId(fields[index++]);
@@ -467,11 +474,15 @@ public class ConsultoraDB {
         int index;
         int n = node.getLength();
         Vector objResultado = new Vector();
+        Node contactNode;
+        String registro;
+        String[] fields;
+        Consultora consultora;
         for (int i = 1; i < n; i = i + 2) {
-            Node contactNode = node.item(i);
-            String registro = contactNode.getChildNodes().item(0).getNodeValue();
-            String[] fields = Cadenas.splitSimple(registro, Cadenas.TOKEN);
-            Consultora consultora = new Consultora();
+            contactNode = node.item(i);
+            registro = contactNode.getChildNodes().item(0).getNodeValue();
+            fields = Cadenas.splitSimple(registro, Cadenas.TOKEN);
+            consultora = new Consultora();
             index = 0;
          
             consultora.setId(fields[index++]);
@@ -543,7 +554,6 @@ public class ConsultoraDB {
         if ( n >= 1 ) {
             Node contactNode = node.item(i);
             String registro = contactNode.getChildNodes().item(0).getNodeValue();
-
             String[] fields = Cadenas.splitSimple(registro, Cadenas.TOKEN);
             Consultora consultora = null;
             consultora = agregarConsultora(fields);
@@ -656,7 +666,7 @@ public class ConsultoraDB {
      * @return
      */
     private Consultora agregarConsultora(String[] fields) {
-    	int index;
+       int index,indice;
        int m;
        Consultora consultora = new Consultora();
        index = 0;
@@ -680,7 +690,12 @@ public class ConsultoraDB {
        consultora.setIdNivel(fields[index++]);
        consultora.setEstadoConsultora(fields[index++]);
        consultora.setPasoPedido(fields[index++]);
-       consultora.setGananciaUltimaCampana(Double.parseDouble( fields[index++] ));
+       indice = index++;
+       if(fields[indice]=="" || fields[indice].trim().length()<1)
+    	   consultora.setGananciaUltimaCampana(0);   
+       else
+    	   consultora.setGananciaUltimaCampana(Double.parseDouble( fields[indice] ));
+       
        consultora.setMontoUltimoPedido(fields[index++]);
        consultora.setOperacion("");
 

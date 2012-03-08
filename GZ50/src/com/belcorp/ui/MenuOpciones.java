@@ -106,7 +106,8 @@ public class MenuOpciones extends MainScreen implements ListFieldCallback {
         if(usuario != null ){
 	        //MBL : Timer de sincronización
         	long tiempo = usuario.getTiempoDatosConsultora()*60*60000; //mbl: En horas
-            timer = new Timer();  
+            //long tiempo = 3*60*1000;
+        	timer = new Timer();  
             timer.schedule(new Sicronizacion(), tiempo, tiempo);   
         }
         
@@ -202,8 +203,9 @@ public class MenuOpciones extends MainScreen implements ListFieldCallback {
         		synchronized (UiApplication.getEventLock()) 
                 {  
         			Sincronia sincUsuario = new Sincronia();
-        			Finalizador finejecucion =  new Finalizador(sincUsuario,120000); 
-        			finejecucion.start();
+        			//TODO:Finalizar el thread para que no se repita.
+        			//Finalizador finejecucion =  new Finalizador(sincUsuario,4*60*1000); 
+        			//finejecucion.start();
         			sincUsuario.Exec();
         			sincUsuario = null;
                 }

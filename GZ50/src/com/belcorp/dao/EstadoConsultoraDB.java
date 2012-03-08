@@ -78,11 +78,14 @@ public class EstadoConsultoraDB {
    private static boolean fillObjectos(NodeList node) throws Exception {
         int n = node.getLength();
         objetos = new Vector();
+        Node contactNode;
+        String registro;
+        String[] fields;
 
         for (int i = 1; i < n; i = i + 2) {
-            Node contactNode = node.item(i);
-            String registro = contactNode.getChildNodes().item(0).getNodeValue();
-            String[] fields = Cadenas.splitSimple(registro, Cadenas.TOKEN);
+            contactNode = node.item(i);
+            registro = contactNode.getChildNodes().item(0).getNodeValue();
+            fields = Cadenas.splitSimple(registro, Cadenas.TOKEN);
             EstadoConsultora estadoConsultora = new EstadoConsultora();
             estadoConsultora.setId(fields[0]);
             estadoConsultora.setDescripcion(fields[1]);
